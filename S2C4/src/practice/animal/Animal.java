@@ -22,7 +22,8 @@ public class Animal {
     private String species = "Dong";
     public int temp = 15;
 
-    private static final int st1 = 22;
+//    private static final int ST1 = 22;
+
     public static int st2 = 23;
 
     static {
@@ -38,6 +39,8 @@ public class Animal {
     }
 
     public Animal(String name, int month) {
+        this.name = name;
+        this.month = month;
         System.out.println("我是父类的双参构造");
     }
 
@@ -71,5 +74,26 @@ public class Animal {
 
     public void eat(String name) {
         System.out.println(name + " is testing eating.");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        Animal temp = (Animal) obj;
+        return this.getName().equals(temp.getName()) && (this.getMonth() == temp.getMonth());
+    }
+
+    public boolean equals(Animal obj) {
+        if (obj == null) {
+            return false;
+        }
+        return this.getName().equals(obj.getName()) && (this.getMonth() == obj.getMonth());
+    }
+
+    @Override
+    public String toString() {
+        return "昵称：" + this.getName() + "，年龄：" + this.getMonth();
     }
 }

@@ -49,4 +49,5 @@ public class Cat extends Animal {
     public void run() {
         System.out.println(this.getName() + " is a " + this.getSpecies() + " cat who runs happily.");
     }
+
 }

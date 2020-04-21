@@ -37,7 +37,7 @@ public class Dog extends Animal {
      * 4、与方法的参数名称无关
      *
      * 方法重写：
-     * 1、返回值类型、方法名、参数类型、顺序、个数与父类方法相同
+     * 1、方法名相同、参数列表相同（参数顺序、个数、类型），方法返回值可以允许是父类对应的子类
      * 2、有继承关系的子类中
      * 3、子类重写父类的方法
      * 4、访问修饰符-访问范围需要大于等于父类的范围
@@ -53,4 +53,5 @@ public class Dog extends Animal {
     public void eat(String month) {
         System.out.println(month + " doesn't want to eat.");
     }
+
 }
