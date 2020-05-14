@@ -1,13 +1,15 @@
 package exercise4;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * @author Tian Z
  */
 public class FileOutputDemo {
     public static void main(String[] args) {
-        File file;
         try {
             FileInputStream fis = new FileInputStream("S3C8\\src\\exercise4\\1.gif");
             FileOutputStream fos = new FileOutputStream("S3C8\\src\\exercise4\\1-2.gif");
