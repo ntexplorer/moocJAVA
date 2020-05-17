@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The type Class.
+ *
  * @author Tian Z
  */
 public class Class {
@@ -18,6 +20,11 @@ public class Class {
                 "班级名称：" + className + ']';
     }
 
+    /**
+     * Gets chinese average.
+     *
+     * @return the chinese average
+     */
     public float getChineseAverage() {
         float sum = 0;
         for (Student student : this.studentList) {
@@ -26,6 +33,11 @@ public class Class {
         return sum / studentList.size();
     }
 
+    /**
+     * Gets math average.
+     *
+     * @return the math average
+     */
     public float getMathAverage() {
         float sum = 0;
         for (Student student : this.studentList) {
@@ -34,36 +46,77 @@ public class Class {
         return sum / studentList.size();
     }
 
+    /**
+     * Instantiates a new Class.
+     *
+     * @param classId   the class id
+     * @param className the class name
+     */
     public Class(String classId, String className) {
         this.classId = classId;
         this.className = className;
         this.studentList = new ArrayList<>();
     }
 
+    /**
+     * Gets class id.
+     *
+     * @return the class id
+     */
     public String getClassId() {
         return classId;
     }
 
+    /**
+     * Sets class id.
+     *
+     * @param classId the class id
+     */
     public void setClassId(String classId) {
         this.classId = classId;
     }
 
+    /**
+     * Gets class name.
+     *
+     * @return the class name
+     */
     public String getClassName() {
         return className;
     }
 
+    /**
+     * Sets class name.
+     *
+     * @param className the class name
+     */
     public void setClassName(String className) {
         this.className = className;
     }
 
+    /**
+     * Gets student list.
+     *
+     * @return the student list
+     */
     public List<Student> getStudentList() {
         return studentList;
     }
 
+    /**
+     * Sets student list.
+     *
+     * @param studentList the student list
+     */
     public void setStudentList(List<Student> studentList) {
         this.studentList = studentList;
     }
 
+    /**
+     * Add student.
+     *
+     * @param student the student
+     */
     public void addStudent(Student student) {
         boolean flag = false;
         for (Student student1 : this.studentList) {
@@ -79,6 +132,12 @@ public class Class {
         }
     }
 
+    /**
+     * Search student by id student.
+     *
+     * @param studentId the student id
+     * @return the student
+     */
     public Student searchStudentById(String studentId) {
         for (Student student : this.studentList) {
             if (student.getStudentId().equals(studentId)) {
@@ -88,6 +147,12 @@ public class Class {
         return null;
     }
 
+    /**
+     * Insert chinese score.
+     *
+     * @param studentId the student id
+     * @param score     the score
+     */
     public void insertChineseScore(String studentId, float score) {
         boolean flag = false;
         for (Student student : this.studentList) {
@@ -102,6 +167,12 @@ public class Class {
         }
     }
 
+    /**
+     * Insert math score.
+     *
+     * @param studentId the student id
+     * @param score     the score
+     */
     public void insertMathScore(String studentId, float score) {
         boolean flag = false;
         for (Student student : this.studentList) {
@@ -116,6 +187,11 @@ public class Class {
         }
     }
 
+    /**
+     * Delete student.
+     *
+     * @param studentId the student id
+     */
     public void deleteStudent(String studentId) {
         boolean flag = false;
         for (Student student : this.studentList) {
@@ -131,6 +207,9 @@ public class Class {
         }
     }
 
+    /**
+     * Display all student.
+     */
     public void displayAllStudent() {
         if (!this.studentList.isEmpty()) {
             System.out.println(this.getClassName() + "班级列表：");
@@ -142,6 +221,11 @@ public class Class {
         }
     }
 
+    /**
+     * Gets average chinese score.
+     *
+     * @return the average chinese score
+     */
     public float getAverageChineseScore() {
         float sum = 0f;
         for (Student student : this.studentList) {
@@ -150,6 +234,11 @@ public class Class {
         return sum / this.studentList.size();
     }
 
+    /**
+     * Gets average math score.
+     *
+     * @return the average math score
+     */
     public float getAverageMathScore() {
         float sum = 0f;
         for (Student student : this.studentList) {

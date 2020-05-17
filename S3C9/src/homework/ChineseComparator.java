@@ -3,6 +3,8 @@ package homework;
 import java.util.Comparator;
 
 /**
+ * The type Chinese comparator.
+ *
  * @author Tian Z
  */
 public class ChineseComparator implements Comparator<Class> {

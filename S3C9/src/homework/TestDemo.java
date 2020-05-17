@@ -4,10 +4,17 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
+ * The type Test demo.
+ *
  * @author Tian Z
  */
 public class TestDemo {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         TestDemo td = new TestDemo();
 //        td.testClass();
@@ -18,6 +25,9 @@ public class TestDemo {
         td.test();
     }
 
+    /**
+     * Test class.
+     */
     public void testClass() {
         Student student1 = new Student("S001", "Tom");
         Student student2 = new Student("S002", "Jack");
@@ -53,6 +63,9 @@ public class TestDemo {
         System.out.println("************************");
     }
 
+    /**
+     * Test school.
+     */
     public void testSchool() {
         Student student1 = new Student("S001", "Tom");
         Student student2 = new Student("S002", "Jack");
@@ -136,6 +149,11 @@ public class TestDemo {
         school1.sortMathByAverage();
     }
 
+    /**
+     * Main menu.
+     *
+     * @param school the school
+     */
     public void mainMenu(School school) {
         System.out.println("************************");
         System.out.println("     ** 主菜单 **    ");
@@ -156,6 +174,10 @@ public class TestDemo {
                     classMenu(school);
                     break;
                 }
+                case 0: {
+                    System.out.println("程序结束！");
+                    break;
+                }
                 default: {
                     System.out.println("无效的输入，请重试");
                 }
@@ -167,6 +189,11 @@ public class TestDemo {
         }
     }
 
+    /**
+     * School menu.
+     *
+     * @param school the school
+     */
     public void schoolMenu(School school) {
         do {
             System.out.println("************************");
@@ -241,6 +268,11 @@ public class TestDemo {
         } while (true);
     }
 
+    /**
+     * Class menu.
+     *
+     * @param school the school
+     */
     public void classMenu(School school) {
         do {
             System.out.println("************************");
@@ -437,6 +469,9 @@ public class TestDemo {
 
     }
 
+    /**
+     * Test.
+     */
     public void test() {
         School school = new School();
         mainMenu(school);

@@ -3,6 +3,8 @@ package homework;
 import java.util.Objects;
 
 /**
+ * The type Student.
+ *
  * @author Tian Z
  */
 public class Student {
@@ -11,6 +13,11 @@ public class Student {
     private float chineseScore;
     private float mathScore;
 
+    /**
+     * Gets student id.
+     *
+     * @return the student id
+     */
     public String getStudentId() {
         return studentId;
     }
@@ -37,34 +44,75 @@ public class Student {
         return Objects.hash(studentId, studentName);
     }
 
+    /**
+     * Sets student id.
+     *
+     * @param studentId the student id
+     */
     public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
 
+    /**
+     * Gets student name.
+     *
+     * @return the student name
+     */
     public String getStudentName() {
         return studentName;
     }
 
+    /**
+     * Sets student name.
+     *
+     * @param studentName the student name
+     */
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
 
+    /**
+     * Gets chinese score.
+     *
+     * @return the chinese score
+     */
     public float getChineseScore() {
         return chineseScore;
     }
 
+    /**
+     * Sets chinese score.
+     *
+     * @param chineseScore the chinese score
+     */
     public void setChineseScore(float chineseScore) {
         this.chineseScore = chineseScore;
     }
 
+    /**
+     * Gets math score.
+     *
+     * @return the math score
+     */
     public float getMathScore() {
         return mathScore;
     }
 
+    /**
+     * Sets math score.
+     *
+     * @param mathScore the math score
+     */
     public void setMathScore(float mathScore) {
         this.mathScore = mathScore;
     }
 
+    /**
+     * Instantiates a new Student.
+     *
+     * @param studentId   the student id
+     * @param studentName the student name
+     */
     public Student(String studentId, String studentName) {
         this.studentId = studentId;
         this.studentName = studentName;
