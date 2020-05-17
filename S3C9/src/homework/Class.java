@@ -11,6 +11,13 @@ public class Class {
     private String className;
     private List<Student> studentList;
 
+    @Override
+    public String toString() {
+        return "班级信息：" +
+                "[班级编号：" + classId + '，' +
+                "班级名称：" + className + ']';
+    }
+
     public float getChineseAverage() {
         float sum = 0;
         for (Student student : this.studentList) {
@@ -66,7 +73,7 @@ public class Class {
             }
         }
         if (flag) {
-            System.out.println("Student ID already exists!");
+            System.out.println("该学号已存在！");
         } else {
             this.studentList.add(student);
         }
@@ -91,7 +98,7 @@ public class Class {
             }
         }
         if (!flag) {
-            System.out.println("Student " + studentId + " doesn't exist! Chinese");
+            System.out.println("学号 " + studentId + " 不存在！无法添加语文成绩！");
         }
     }
 
@@ -105,7 +112,7 @@ public class Class {
             }
         }
         if (!flag) {
-            System.out.println("Student " + studentId + " doesn't exist! Math");
+            System.out.println("学号 " + studentId + " 不存在！无法添加数学成绩！");
         }
     }
 
@@ -115,19 +122,40 @@ public class Class {
             if (student.getStudentId().equals(studentId)) {
                 flag = true;
                 this.studentList.remove(student);
-                System.out.println("Deletion successful!");
+                System.out.println("删除操作成功！");
                 break;
             }
         }
         if (!flag) {
-            System.out.println("Fail to delete a student which doesn't exist!");
+            System.out.println("删除操作失败，学生不存在！");
         }
     }
 
     public void displayAllStudent() {
-        for (Student student : this.studentList) {
-            System.out.println(student);
+        if (!this.studentList.isEmpty()) {
+            System.out.println(this.getClassName() + "班级列表：");
+            for (Student student : this.studentList) {
+                System.out.println(student);
+            }
+        } else {
+            System.out.println("班级为空！");
         }
+    }
+
+    public float getAverageChineseScore() {
+        float sum = 0f;
+        for (Student student : this.studentList) {
+            sum += student.getChineseScore();
+        }
+        return sum / this.studentList.size();
+    }
+
+    public float getAverageMathScore() {
+        float sum = 0f;
+        for (Student student : this.studentList) {
+            sum += student.getMathScore();
+        }
+        return sum / this.studentList.size();
     }
 
 }

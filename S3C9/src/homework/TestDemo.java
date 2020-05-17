@@ -1,16 +1,21 @@
 package homework;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 /**
  * @author Tian Z
  */
 public class TestDemo {
+
     public static void main(String[] args) {
         TestDemo td = new TestDemo();
-        td.testClass();
-        System.out.println("#########################");
-        td.testSchool();
-        System.out.println("#########################");
+//        td.testClass();
+//        System.out.println("#########################");
+//        td.testSchool();
+//        System.out.println("#########################");
 
+        td.test();
     }
 
     public void testClass() {
@@ -119,7 +124,7 @@ public class TestDemo {
         System.out.println("*********************");
         school1.displayClassName();
         System.out.println("*********************");
-        school1.deleteClass(class2);
+        school1.deleteClass("C002");
         school1.displayClassName();
         school1.addClass(class2);
         System.out.println("*********************");
@@ -131,19 +136,309 @@ public class TestDemo {
         school1.sortMathByAverage();
     }
 
-    public void mainMenu() {
-
+    public void mainMenu(School school) {
+        System.out.println("************************");
+        System.out.println("     ** 主菜单 **    ");
+        System.out.println("     1--班级管理");
+        System.out.println("     2--学校管理");
+        System.out.println("     0--退出");
+        System.out.println("************************");
+        System.out.println("请输入对应数字进行列表管理：");
+        Scanner mainScanner = new Scanner(System.in);
+        try {
+            int input = mainScanner.nextInt();
+            switch (input) {
+                case 1: {
+                    schoolMenu(school);
+                    break;
+                }
+                case 2: {
+                    classMenu(school);
+                    break;
+                }
+                default: {
+                    System.out.println("无效的输入，请重试");
+                }
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("异常输入，请重试！");
+            String input = mainScanner.nextLine();
+            mainMenu(school);
+        }
     }
 
-    public void schoolMenu() {
+    public void schoolMenu(School school) {
+        do {
+            System.out.println("************************");
+            System.out.println("     ** 学校管理 **    ");
+            System.out.println("     1--创建班级");
+            System.out.println("     2--删除班级");
+            System.out.println("     3--通过班级名称查询班级信息");
+            System.out.println("     4--对各班语文成绩按平均分进行由大到小排序 ");
+            System.out.println("     5--对各班数学成绩按平均分进行由大到小排序 ");
+            System.out.println("     6--显示所有班级名称 ");
+            System.out.println("     9--返回上一级菜单 ");
+            System.out.println("************************");
+            System.out.println("请输入对应数字进行学校列表管理");
+            Scanner schoolScanner = new Scanner(System.in);
+            try {
+                int input = schoolScanner.nextInt();
+                switch (input) {
+                    case 1: {
+                        System.out.println("向学校中添加班级");
+                        System.out.println("请输入班级编号：");
+                        String classId = schoolScanner.next();
+                        System.out.println("请输入班级名称：");
+                        String className = schoolScanner.next();
+                        Class newClass = new Class(classId, className);
+                        school.addClass(newClass);
+                        break;
+                    }
+                    case 2: {
+                        System.out.println("从学校中删除班级");
+                        System.out.println("请输入班级名称");
+                        String className = schoolScanner.next();
+                        school.deleteClass(className);
+                        break;
+                    }
+                    case 3: {
+                        System.out.println("通过班级名称查询班级");
+                        System.out.println("请输入班级名称");
+                        String className = schoolScanner.next();
+                        Class classFound = school.searchByClassName(className);
+                        if (classFound != null) {
+                            System.out.println(classFound);
+                        } else {
+                            System.out.println("班级不存在");
+                        }
+                        break;
+                    }
+                    case 4: {
+                        school.sortChineseByAverage();
+                        break;
+                    }
+                    case 5: {
+                        school.sortMathByAverage();
+                        break;
+                    }
+                    case 6: {
+                        school.displayClassName();
+                        break;
+                    }
+                    case 9: {
+                        mainMenu(school);
+                        break;
+                    }
+                    default:
+                        System.out.println("无效的输入，请重试");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("异常输入，请重试！");
+                String input = schoolScanner.nextLine();
+                schoolMenu(school);
+            }
 
+        } while (true);
     }
 
-    public void classMenu() {
+    public void classMenu(School school) {
+        do {
+            System.out.println("************************");
+            System.out.println("     ** 班级管理 **    ");
+            System.out.println("     1--添加学生信息到主学生列表");
+            System.out.println("     2--添加学生信息到普通班级");
+            System.out.println("     3--通过学号查询学生信息");
+            System.out.println("     4--输入班级的语文成绩 ");
+            System.out.println("     5--输入班级的数学成绩 ");
+            System.out.println("     6--删除学生信息 ");
+            System.out.println("     7--显示所有学生信息 ");
+            System.out.println("     9--返回上一级菜单 ");
+            System.out.println("************************");
+            System.out.println("请输入对应数字进行班级列表管理");
+            Scanner classScanner = new Scanner(System.in);
+            try {
+                int input = classScanner.nextInt();
+                switch (input) {
+                    case 1: {
+                        System.out.println("添加学生到主学生列表");
+                        System.out.println("请输入添加的学生数量：");
+                        int number = Integer.parseInt(classScanner.next());
+                        for (int i = 0; i < number; i++) {
+                            System.out.println("请输入第" + (i + 1) + "个学生信息");
+                            System.out.println("请输入学生编号：");
+                            String studentId = classScanner.next();
+                            System.out.println("请输入学生姓名：");
+                            String studentName = classScanner.next();
+                            Student newStudent = new Student(studentId, studentName);
+                            school.addStudent(studentId, newStudent);
+                        }
+                        System.out.println("主学生列表的学生信息为：");
+                        school.displayAllStudent();
+                        break;
+                    }
+                    case 2: {
+                        System.out.println("添加学生信息到普通班级");
+                        System.out.println("请输入要添加的班级名称");
+                        String className = classScanner.next();
+                        Class selectedClass = null;
+                        for (String name : school.getSchoolMap().keySet()) {
+                            if (name.equals(className)) {
+                                selectedClass = school.getSchoolMap().get(name);
+                                break;
+                            }
+                        }
+                        if (selectedClass != null) {
+                            System.out.println("请输入要添加的学生个数：");
+                            int studentNumber = classScanner.nextInt();
+                            for (int i = 0; i < studentNumber; i++) {
+                                System.out.println("请输入第" + (i + 1) + "个学生信息");
+                                System.out.println("请输入要添加的学生id：");
+                                String studentId = classScanner.next();
+                                Student selectedStudent = null;
+                                for (String id : school.getStudentMap().keySet()) {
+                                    if (id.equals(studentId)) {
+                                        selectedStudent = school.getStudentMap().get(id);
+                                        break;
+                                    }
+                                }
+                                if (selectedStudent != null) {
+                                    selectedClass.addStudent(selectedStudent);
+                                    System.out.println("添加成功");
+                                } else {
+                                    System.out.println("学生不存在，请重试");
+                                }
+                            }
+                        } else {
+                            System.out.println("班级不存在!");
+                        }
+                        school.displayAllStudent();
+                        if (selectedClass != null) {
+                            selectedClass.displayAllStudent();
+                        }
+                        break;
+                    }
+                    case 3: {
+                        System.out.println("通过学号查询学生信息：");
+                        System.out.println("请输入学号：");
+                        String studentId = classScanner.next();
+                        Student selectedStudent = null;
+                        for (String id : school.getStudentMap().keySet()) {
+                            if (id.equals(studentId)) {
+                                selectedStudent = school.getStudentMap().get(id);
+                                break;
+                            }
+                        }
+                        if (selectedStudent != null) {
+                            System.out.println(selectedStudent);
+                        } else {
+                            System.out.println("学生不存在");
+                        }
+                        break;
+                    }
+                    case 4: {
+                        System.out.println("输入班级的语文成绩");
+                        System.out.println("输入班级的名称");
+                        String className = classScanner.next();
+                        Class selectedClass = null;
+                        for (String name : school.getSchoolMap().keySet()) {
+                            if (name.equals(className)) {
+                                selectedClass = school.getSchoolMap().get(name);
+                                break;
+                            }
+                        }
+                        if (selectedClass != null) {
+                            for (Student student : selectedClass.getStudentList()) {
+                                System.out.println(student);
+                                System.out.println("请输入语文成绩：");
+                                float chineseScore = classScanner.nextFloat();
+                                student.setChineseScore(chineseScore);
+                                System.out.println("添加语文成绩成功");
+                            }
+                        } else {
+                            System.out.println("班级不存在");
+                        }
+                        break;
+                    }
+                    case 5: {
+                        System.out.println("输入班级的数学成绩");
+                        System.out.println("输入班级的名称");
+                        String className = classScanner.next();
+                        Class selectedClass = null;
+                        for (String name : school.getSchoolMap().keySet()) {
+                            if (name.equals(className)) {
+                                selectedClass = school.getSchoolMap().get(name);
+                                break;
+                            }
+                        }
+                        if (selectedClass != null) {
+                            for (Student student : selectedClass.getStudentList()) {
+                                System.out.println(student);
+                                System.out.println("请输入数学成绩：");
+                                float mathScore = classScanner.nextFloat();
+                                student.setMathScore(mathScore);
+                                System.out.println("添加数学成绩成功");
+                            }
+                        } else {
+                            System.out.println("班级不存在");
+                        }
+                        break;
+                    }
+                    case 6: {
+                        System.out.println("删除学生信息");
+                        System.out.println("输入班级的名称");
+                        String className = classScanner.next();
+                        Class selectedClass = null;
+                        for (String name : school.getSchoolMap().keySet()) {
+                            if (name.equals(className)) {
+                                selectedClass = school.getSchoolMap().get(name);
+                                break;
+                            }
+                        }
+                        if (selectedClass != null) {
+                            System.out.println("请输入学生编号");
+                            String studentId = classScanner.next();
+                            selectedClass.deleteStudent(studentId);
+                        }
+                        break;
+                    }
+                    case 7: {
+                        System.out.println("按班级显示学生信息");
+                        System.out.println("请输入班级名称");
+                        String className = classScanner.next();
+                        Class selectedClass = null;
+                        for (String name : school.getSchoolMap().keySet()) {
+                            if (name.equals(className)) {
+                                selectedClass = school.getSchoolMap().get(name);
+                                break;
+                            }
+                        }
+                        if (selectedClass != null) {
+                            selectedClass.displayAllStudent();
+                        } else {
+                            System.out.println("班级不存在！");
+                        }
+                        break;
+                    }
+                    case 9: {
+                        mainMenu(school);
+                        break;
+                    }
+                    default: {
+
+                    }
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("异常输入，请重试！");
+                String input = classScanner.nextLine();
+                classMenu(school);
+            }
+
+        } while (true);
 
     }
 
     public void test() {
-
+        School school = new School();
+        mainMenu(school);
     }
 }

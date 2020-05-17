@@ -17,12 +17,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId='" + studentId + '\'' +
-                ", studentName='" + studentName + '\'' +
-                ", chineseScore=" + chineseScore +
-                ", mathScore=" + mathScore +
-                '}';
+        return "学生信息： [学号：" + this.getStudentId() + "，学生姓名：" + this.getStudentName() + "]";
     }
 
     @Override
